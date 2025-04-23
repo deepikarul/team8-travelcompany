@@ -34,7 +34,7 @@ SideBarLinks(show_home=True)
 
 # set the title of the page and provide a simple prompt. 
 logger.info("Loading the Home page of the app")
-st.title('CS 3200 Sample Semester Project App')
+st.title('Explore Beyond')
 st.write('\n\n')
 st.write('### HI! As which user would you like to log in?')
 
@@ -42,36 +42,45 @@ st.write('### HI! As which user would you like to log in?')
 # functionality, we put a button on the screen that the user 
 # can click to MIMIC logging in as that mock user. 
 
-if st.button("Act as John, a Political Strategy Advisor", 
+if st.button("Act as Amy, a Customer", 
             type = 'primary', 
             use_container_width=True):
     # when user clicks the button, they are now considered authenticated
     st.session_state['authenticated'] = True
     # we set the role of the current user
-    st.session_state['role'] = 'pol_strat_advisor'
+    st.session_state['role'] = 'customer'
     # we add the first name of the user (so it can be displayed on 
     # subsequent pages). 
-    st.session_state['first_name'] = 'John'
+    st.session_state['first_name'] = 'Amy'
     # finally, we ask streamlit to switch to another page, in this case, the 
     # landing page for this particular user type
-    logger.info("Logging in as Political Strategy Advisor Persona")
-    st.switch_page('pages/00_Pol_Strat_Home.py')
+    logger.info("Logging in as Customer Persona")
+    st.switch_page('pages/00_Customer_Home.py')
 
-if st.button('Act as Mohammad, an USAID worker', 
+if st.button('Act as David, a Travel Agency Manager', 
             type = 'primary', 
             use_container_width=True):
     st.session_state['authenticated'] = True
-    st.session_state['role'] = 'usaid_worker'
-    st.session_state['first_name'] = 'Mohammad'
-    st.switch_page('pages/10_USAID_Worker_Home.py')
+    st.session_state['role'] = 'travel_agency_manager'
+    st.session_state['first_name'] = 'David'
+    logger.info("Logging in as Travel Agency Manager Persona")
+    st.switch_page('pages/10_Travel_Agency_Manager_Home.py')
 
-if st.button('Act as System Administrator', 
+if st.button('Act as Suzy, an Assistant', 
             type = 'primary', 
             use_container_width=True):
     st.session_state['authenticated'] = True
-    st.session_state['role'] = 'administrator'
-    st.session_state['first_name'] = 'SysAdmin'
-    st.switch_page('pages/20_Admin_Home.py')
+    st.session_state['role'] = 'assistant'
+    st.session_state['first_name'] = 'Suzy'
+    logger.info("Logging in as Assistant Persona")
+    st.switch_page('pages/20_Assistant_Home.py')
 
-
+if st.button('Act as James, a Travel Agent', 
+            type = 'primary', 
+            use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'travel_agent'
+    st.session_state['first_name'] = 'James'
+    logger.info("Logging in as Travel Agent Persona")
+    st.switch_page('pages/22_Travel_Agent_Home.py')
 

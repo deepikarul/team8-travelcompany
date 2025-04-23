@@ -9,7 +9,7 @@ st.set_page_config(layout = 'wide')
 
 SideBarLinks()
 
-st.title('System Admin Home Page')
+st.title(f"Welcome Assistant, {st.session_state['first_name']}.")
 
 if st.button('Update ML Models', 
              type='primary',
