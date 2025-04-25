@@ -10,11 +10,11 @@ def query_db(query, args=(), fetch=True):
         return [dict(zip([col[0] for col in cur.description], row)) for row in cur.fetchall()]
     mysql.connection.commit()
 
-@agents_bp.route('/', methods=['GET'])
+@agents_bp.route('/agents', methods=['GET'])
 def get_agents():
     return jsonify(query_db("SELECT * FROM TravelAgent"))
 
-@agents_bp.route('/', methods=['POST'])
+@agents_bp.route('/agents', methods=['POST'])
 def add_agent():
     data = request.json
     query_db(
@@ -24,7 +24,7 @@ def add_agent():
     )
     return jsonify({'message': 'Agent added successfully'}), 201
 
-@agents_bp.route('/<int:agent_id>', methods=['PUT'])
+@agents_bp.route('/agents/<int:agent_id>', methods=['PUT'])
 def update_agent(agent_id):
     data = request.json
     query_db(
@@ -34,12 +34,12 @@ def update_agent(agent_id):
     )
     return jsonify({'message': 'Agent updated successfully'})
 
-@agents_bp.route('/<int:agent_id>', methods=['DELETE'])
+@agents_bp.route('/agents/<int:agent_id>', methods=['DELETE'])
 def delete_agent(agent_id):
     query_db("DELETE FROM TravelAgent WHERE agentID = %s", (agent_id,), fetch=False)
     return jsonify({'message': 'Agent deleted successfully'})
 
-@agents_bp.route('/<int:agent_id>/clients', methods=['GET'])
+@agents_bp.route('/agents/<int:agent_id>/clients', methods=['GET'])
 def get_agent_clients(agent_id):
     clients = query_db("""
         SELECT c.* FROM Clients c

@@ -2,6 +2,7 @@ import logging
 logger = logging.getLogger(__name__)
 import pandas as pd
 import streamlit as st
+import requests
 from streamlit_extras.app_logo import add_logo
 import world_bank_data as wb
 import matplotlib.pyplot as plt
@@ -19,35 +20,9 @@ st.header('Data for all flights')
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
 
-flights = requests.get('http://api:4000/').json()
+flights = requests.get('http://api:4000/flights').json()
 
 try:
     st.dataframe(flights)
 except:
     st.write("Could not connect to database to get flights")
-
-# get the flights from the flights data
-#with st.echo(code_location='above'):
- #   flights:pd.DataFrame = fl.get_flights()
-   
-  #  st.dataframe(flights)
-
-# the with statment shows the code for this block above it 
-#with st.echo(code_location='above'):
- #   arr = np.random.normal(1, 1, size=100)
-  #  test_plot, ax = plt.subplots()
-   # ax.hist(arr, bins=20)
-
-    #st.pyplot(test_plot)
-
-
-with st.echo(code_location='above'):
-    slim_countries = countries[countries['incomeLevel'] != 'Aggregates']
-    data_crosstab = pd.crosstab(slim_countries['region'], 
-                                slim_countries['incomeLevel'],  
-                                margins = False) 
-    st.table(data_crosstab)
-
-#with st.echo(code_location='above'):
- #   paris = flights[flights['destCity'] == 'Paris']
-  #  st.dataframe(paris)

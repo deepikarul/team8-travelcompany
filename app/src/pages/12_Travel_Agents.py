@@ -15,5 +15,5 @@ st.write(f"### Hi, {st.session_state['first_name']}.")
 
 agent_ID = st.number_input("Enter agent ID:")
 
-clients = requests.get('http://api:4000/<int:agent_id>/clients', json=agent_ID)
+clients = requests.get('http://api:4000/agents/<int:agent_id>/clients', json=agent_ID)
 st.dataframe(clients)

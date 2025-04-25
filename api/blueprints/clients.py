@@ -11,12 +11,12 @@ def query_db(query, args=(), fetch=True):
         return result
     mysql.connection.commit()
 
-@clients_bp.route('/', methods=['GET'])
+@clients_bp.route('/clients', methods=['GET'])
 def get_clients():
     clients = query_db("SELECT * FROM Clients")
     return jsonify(clients)
 
-@clients_bp.route('/', methods=['POST'])
+@clients_bp.route('/clients', methods=['POST'])
 def add_client():
     data = request.json
     query_db(
@@ -26,7 +26,7 @@ def add_client():
     )
     return jsonify({'message': 'Client added successfully'}), 201
 
-@clients_bp.route('/<int:client_id>', methods=['PUT'])
+@clients_bp.route('/clients/<int:client_id>', methods=['PUT'])
 def update_client(client_id):
     data = request.json
     query_db(
@@ -36,12 +36,12 @@ def update_client(client_id):
     )
     return jsonify({'message': 'Client updated successfully'})
 
-@clients_bp.route('/<int:client_id>', methods=['DELETE'])
+@clients_bp.route('/clients/<int:client_id>', methods=['DELETE'])
 def delete_client(client_id):
     query_db("DELETE FROM Clients WHERE clientID = %s", (client_id,), fetch=False)
     return jsonify({'message': 'Client deleted successfully'})
 
-@clients_bp.route('/<int:client_id>/packages', methods=['GET'])
+@clients_bp.route('/clients/<int:client_id>/packages', methods=['GET'])
 def get_client_packages(client_id):
     packages = query_db("""
         SELECT p.* FROM TravelPackages p

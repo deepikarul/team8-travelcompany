@@ -10,5 +10,5 @@ st.header('Flights to Specific Destination Data')
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
 dest_city = st.text_input("Enter the destination to get flights going there:")
-flightsTo = requests.get('https://api:4000/to/<string:dest_city>', json=dest_city)
+flightsTo = requests.get('https://api:4000/flights/to/<string:dest_city>', json=dest_city)
 st.dataframe(flightsTo)

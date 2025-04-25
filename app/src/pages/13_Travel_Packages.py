@@ -11,7 +11,7 @@ add_logo("assets/logo.png", height=400)
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
 st.write("All Travel Packages: ")
-packages = requests.get('http://api:4000/').json()
+packages = requests.get('http://api:4000/packages').json()
 
 st.write("Add a package here:")
 
@@ -32,4 +32,4 @@ with st.form("Create a new travel package"):
         st.write("Response submitted. Contents of Submission:")
         st.write(data)
 
-        requests.post('https://api:4000/', json=data)
+        requests.post('https://api:4000/packages', json=data)

@@ -10,12 +10,12 @@ def query_db(query, args=(), fetch=True):
         return [dict(zip([col[0] for col in cur.description], row)) for row in cur.fetchall()]
     mysql.connection.commit()
 
-@packages_bp.route('/', methods=['GET'])
+@packages_bp.route('/packages', methods=['GET'])
 def get_packages():
     packages = query_db("SELECT * FROM TravelPackages")
     return jsonify(packages)
 
-@packages_bp.route('/', methods=['POST'])
+@packages_bp.route('/packages', methods=['POST'])
 def add_package():
     data = request.json
     query_db(
@@ -25,7 +25,7 @@ def add_package():
     )
     return jsonify({'message': 'Package added successfully'}), 201
 
-@packages_bp.route('/<int:package_id>', methods=['PUT'])
+@packages_bp.route('/packages/<int:package_id>', methods=['PUT'])
 def update_package(package_id):
     data = request.json
     query_db(
@@ -35,12 +35,12 @@ def update_package(package_id):
     )
     return jsonify({'message': 'Package updated successfully'})
 
-@packages_bp.route('/<int:package_id>', methods=['DELETE'])
+@packages_bp.route('/packages/<int:package_id>', methods=['DELETE'])
 def delete_package(package_id):
     query_db("DELETE FROM TravelPackages WHERE packageID = %s", (package_id,), fetch=False)
     return jsonify({'message': 'Package deleted successfully'})
 
-@packages_bp.route('/<int:package_id>/activities', methods=['GET'])
+@packages_bp.route('/packages/<int:package_id>/activities', methods=['GET'])
 def get_package_activities(package_id):
     activities = query_db("""
         SELECT a.* FROM Activities a

@@ -8,21 +8,5 @@ st.set_page_config(layout = 'wide')
 
 SideBarLinks()
 
-st.title('App Administration Page')
-
-st.write('\n\n')
-st.write('## Model 1 Maintenance')
-
-st.button("Train Model 01", 
-            type = 'primary', 
-            use_container_width=True)
-
-st.button('Test Model 01', 
-            type = 'primary', 
-            use_container_width=True)
-
-if st.button('Model 1 - get predicted value for 10, 25', 
-             type = 'primary',
-             use_container_width=True):
-  results = requests.get('http://api:4000/c/prediction/10/25').json()
-  st.dataframe(results)
+client_id = st.text_input("Enter the id of the client to be removed from the database:")
+requests.delete('https://api:4000/clients/<int:client_id>', client_id)
