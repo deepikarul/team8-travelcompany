@@ -14,12 +14,17 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
-if st.button('View Credit Cards', 
+if st.button('View all Flights', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/01_Credit_Cards.py')
+  st.switch_page('pages/01_Flights.py')
 
-if st.button('View Customer Support', 
+if st.button('Update Client Information', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/02_Customer_Support.py')
+  st.switch_page('pages/02_Client.py')
+
+if st.button('View Flights to specific destination city',
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/03_Flights_to.py')

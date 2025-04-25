@@ -11,49 +11,71 @@ def HomeNav():
 
 
 def AboutPageNav():
-    st.sidebar.page_link("pages/30_About.py", label="About", icon="🧠")
+    st.sidebar.page_link("pages/40_About.py", label="About", icon="🧠")
 
 
-#### ------------------------ Examples for Role of pol_strat_advisor ------------------------
-def PolStratAdvHomeNav():
+#### ------------------------ Examples for Role of customer ------------------------
+def CustomerHomeNav():
     st.sidebar.page_link(
-        "pages/00_Pol_Strat_Home.py", label="Political Strategist Home", icon="👤"
+        "pages/00_Customer_Home.py", label="Customer Home", icon="👤"
     )
 
 
-def WorldBankVizNav():
+def Flights01Nav():
     st.sidebar.page_link(
-        "pages/01_World_Bank_Viz.py", label="World Bank Visualization", icon="🏦"
+        "pages/01_Flights.py", label="Flights", icon="🏦"
     )
 
 
-def MapDemoNav():
-    st.sidebar.page_link("pages/02_Map_Demo.py", label="Map Demonstration", icon="🗺️")
+def Clients02Nav():
+    st.sidebar.page_link("pages/02_Client.py", label="Client", icon="🗺️")
+
+def d():
+    st.sidebar.page_link("pages/03_.py", lable="")
 
 
-## ------------------------ Examples for Role of usaid_worker ------------------------
-def ApiTestNav():
-    st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon="🛜")
-
-
-def PredictionNav():
+## ------------------------ Examples for Role of travel agency manager ------------------------
+def TravelAgencyManagerNav():
     st.sidebar.page_link(
-        "pages/11_Prediction.py", label="Regression Prediction", icon="📈"
+        "pages/10_Travel_Agency_Manager_Home.py", label="Travel Agency Manager", icon="🛜"
+        )
+
+
+def Flights11Nav():
+    st.sidebar.page_link(
+        "pages/11_Prediction.py", label="Flights", icon="📈"
     )
 
 
-def ClassificationNav():
+def TravelAgents12Nav():
     st.sidebar.page_link(
-        "pages/13_Classification.py", label="Classification Demo", icon="🌺"
+        "pages/12_Travel_Agents.py", label="Travel Agents", icon="🌺"
+    )
+
+def TravelPackages13Nav():
+    st.sidebar.page_link(
+        "pages/13_Travel_Packages.py", label="Travel Packages", icon="🌺"
     )
 
 
-#### ------------------------ System Admin Role ------------------------
-def AdminPageNav():
-    st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon="🖥️")
+#### ------------------------ Assistant Role ------------------------
+def AssistantNav():
+    st.sidebar.page_link("pages/20_Assistant_Home.py", label="Assistant", icon="🖥️")
     st.sidebar.page_link(
-        "pages/21_ML_Model_Mgmt.py", label="ML Model Management", icon="🏢"
+        "pages/21_Client.py", label="Client", icon="🏢"
     )
+    st.sidebar.page_link("pages/22_Flights.py", label="Flights")
+    st.sidebar.page_link("pages/23_.py", label="")
+
+
+#### ------------------------ Travel Agent Role ------------------------
+def TravelAgentNav():
+    st.sidebar.page_link("pages/30_Travel_Agent_Home.py", label="Travel Agent", icon="🖥️")
+    st.sidebar.page_link(
+        "pages/31_Clients.py", label="Clients", icon="🏢"
+    )
+    st.sidebar.page_link("pages/32_Flights.py", label="Flights")
+    st.sidebar.page_link("pages/33_Travel_Agents.py", label="")
 
 
 # --------------------------------Links Function -----------------------------------------------
@@ -77,21 +99,27 @@ def SideBarLinks(show_home=False):
     # Show the other page navigators depending on the users' role.
     if st.session_state["authenticated"]:
 
-        # Show World Bank Link and Map Demo Link if the user is a political strategy advisor role.
-        if st.session_state["role"] == "pol_strat_advisor":
-            PolStratAdvHomeNav()
-            WorldBankVizNav()
-            MapDemoNav()
+        # If the user is a customer
+        if st.session_state["role"] == "customer":
+            CustomerHomeNav()
+            Flights01Nav()
+            Clients02Nav()
+            d()
 
-        # If the user role is usaid worker, show the Api Testing page
-        if st.session_state["role"] == "usaid_worker":
-            PredictionNav()
-            ApiTestNav()
-            ClassificationNav()
+        # If the user is a travel agency manager
+        if st.session_state["role"] == "travel_agency_manager":
+            TravelAgencyManagerNav()
+            Flights11Nav()
+            TravelAgents12Nav()
+            TravelPackages13Nav()
 
-        # If the user is an administrator, give them access to the administrator pages
-        if st.session_state["role"] == "administrator":
-            AdminPageNav()
+        # If the user is an assistant
+        if st.session_state["role"] == "assistant":
+            AssistantNav()
+
+        # If the user is a travel agent
+        if st.session_state["role"] == "travel_agent":
+            TravelAgentNav()
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()

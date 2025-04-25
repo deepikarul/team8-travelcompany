@@ -9,19 +9,19 @@ st.set_page_config(layout = 'wide')
 
 SideBarLinks()
 
-st.title(f"Welcome Assistant, {st.session_state['first_name']}.")
+st.title(f"Welcome Travel Agent, {st.session_state['first_name']}.")
 
-if st.button('Update Client Information', 
+if st.button('Remove a client', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/21_Client.py')
+  st.switch_page('pages/31_Clients.py')
 
 if st.button('View Flights', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/22_Flights.py')
+  st.switch_page('pages/32_Flights.py')
 
-if st.button('', 
+if st.button('Update Travel Agent Information', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/23_.py')
+  st.switch_page('pages/33_Travel_Agents.py')

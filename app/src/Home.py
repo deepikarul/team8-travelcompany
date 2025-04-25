@@ -82,5 +82,5 @@ if st.button('Act as James, a Travel Agent',
     st.session_state['role'] = 'travel_agent'
     st.session_state['first_name'] = 'James'
     logger.info("Logging in as Travel Agent Persona")
-    st.switch_page('pages/22_Travel_Agent_Home.py')
+    st.switch_page('pages/30_Travel_Agent_Home.py')
 

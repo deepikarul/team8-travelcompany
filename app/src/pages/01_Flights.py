@@ -13,24 +13,32 @@ from modules.nav import SideBarLinks
 SideBarLinks()
 
 # set the header of the page
-st.header('Credit Card Data')
+st.header('Data for all flights')
 
 # You can access the session state to make a more customized/personalized app experience
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
-# get the countries from the world bank data
-with st.echo(code_location='above'):
-    countries:pd.DataFrame = wb.get_countries()
+
+flights = requests.get('http://api:4000/').json()
+
+try:
+    st.dataframe(flights)
+except:
+    st.write("Could not connect to database to get flights")
+
+# get the flights from the flights data
+#with st.echo(code_location='above'):
+ #   flights:pd.DataFrame = fl.get_flights()
    
-    st.dataframe(countries)
+  #  st.dataframe(flights)
 
 # the with statment shows the code for this block above it 
-with st.echo(code_location='above'):
-    arr = np.random.normal(1, 1, size=100)
-    test_plot, ax = plt.subplots()
-    ax.hist(arr, bins=20)
+#with st.echo(code_location='above'):
+ #   arr = np.random.normal(1, 1, size=100)
+  #  test_plot, ax = plt.subplots()
+   # ax.hist(arr, bins=20)
 
-    st.pyplot(test_plot)
+    #st.pyplot(test_plot)
 
 
 with st.echo(code_location='above'):
@@ -39,3 +47,7 @@ with st.echo(code_location='above'):
                                 slim_countries['incomeLevel'],  
                                 margins = False) 
     st.table(data_crosstab)
+
+#with st.echo(code_location='above'):
+ #   paris = flights[flights['destCity'] == 'Paris']
+  #  st.dataframe(paris)
