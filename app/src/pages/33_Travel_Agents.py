@@ -12,4 +12,4 @@ agent_id = st.text_input("Enter agent id:")
 phone_num = st.number_input("Enter new phone number:")
 data={}
 data['phoneNum'] = phone_num
-requests.put('https://api:4000//agents/<int:agent_id>', agent_id, json=data)
+requests.put('https://api:4000/a/agents/{agent_id}', json=data)

@@ -10,6 +10,6 @@ SideBarLinks()
 st.header('Flights Data')
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
-flights = requests.get('http://api:4000/flights').json()
+flights = requests.get('http://api:4000/f/flights').json()
 
 st.dataframe(flights)

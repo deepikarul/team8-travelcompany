@@ -9,4 +9,4 @@ st.set_page_config(layout = 'wide')
 SideBarLinks()
 
 client_id = st.text_input("Enter the id of the client to be removed from the database:")
-requests.delete('https://api:4000/clients/<int:client_id>', client_id)
+requests.delete('https://api:4000/c/clients/{client_id}').json()

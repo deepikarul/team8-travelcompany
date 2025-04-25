@@ -32,4 +32,4 @@ with st.form("Create a new travel package"):
         st.write("Response submitted. Contents of Submission:")
         st.write(data)
 
-        requests.post('https://api:4000/packages', json=data)
+        requests.post('https://api:4000/p/packages', json=data)
